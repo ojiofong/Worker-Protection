@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     app:layout_collapseMode="parallax">
 
- <ImageView
-     android:layout_width="match_parent"
-     android:src="@drawable/farmer"
-     android:id="@+id/imageView1"
-     android:scaleType="centerCrop"
-     android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/farmer" />
 
 </LinearLayout>

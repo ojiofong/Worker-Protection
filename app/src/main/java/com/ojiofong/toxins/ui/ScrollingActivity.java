@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,15 +42,22 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         setupFab();
-
+        setupCollapsingToolbar();
         setUpRecyclerView();
     }
 
-    private void setupFab(){
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
-        if(fab!=null){
+    private void setupCollapsingToolbar() {
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        if (collapsingToolbar != null) {
+            collapsingToolbar.setTitle(getString(R.string.app_name));
+        }
+    }
+
+    private void setupFab() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -105,7 +113,7 @@ public class ScrollingActivity extends AppCompatActivity {
         int pos = mRecyclerView.getChildAdapterPosition(view);
         if (pos == RecyclerView.NO_POSITION) return;
 
-      //  showToast(pos + "");
+        //  showToast(pos + "");
 
         switch (pos) {
             case 0:
@@ -125,12 +133,6 @@ public class ScrollingActivity extends AppCompatActivity {
         list.add(new Data(getString(R.string.report_complaint), R.mipmap.ic_launcher, "subtitle"));
         list.add(new Data(getString(R.string.device_connect), R.mipmap.ic_launcher, "subtitle"));
         list.add(new Data(getString(R.string.capture_images), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.report_complaint), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.device_connect), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.capture_images), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.report_complaint), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.device_connect), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.capture_images), R.mipmap.ic_launcher, "subtitle"));
         return list;
     }
 
@@ -144,7 +146,7 @@ public class ScrollingActivity extends AppCompatActivity {
 // Determine Uri of camera image to save.
         final File root = new File(Environment.getExternalStorageDirectory() + File.separator + "MyDir" + File.separator);
         root.mkdirs();
-        final String fname = "img_"+ System.currentTimeMillis() + ".jpg";
+        final String fname = "img_" + System.currentTimeMillis() + ".jpg";
         final File sdImageMainDirectory = new File(root, fname);
         outputFileUri = Uri.fromFile(sdImageMainDirectory);
 
@@ -153,7 +155,7 @@ public class ScrollingActivity extends AppCompatActivity {
         final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         final PackageManager packageManager = getPackageManager();
         final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
-        for(ResolveInfo info : listCam) {
+        for (ResolveInfo info : listCam) {
             final String packageName = info.activityInfo.packageName;
             final Intent intent = new Intent(captureIntent);
             intent.setComponent(new ComponentName(info.activityInfo.packageName, info.activityInfo.name));
