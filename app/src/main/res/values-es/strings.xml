@@ -1,0 +1,13 @@
+<resources>
+
+
+    <!-- Spanish -->
+    <string name="app_name">Protección del trabajado EPA</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="help">Ayuda</string>
+    <string name="hello">Hola!</string>
+    <string name="device_connect">Conecte el dispositivo</string>
+    <string name="capture_images">Grabar un entorno peligroso</string>
+    <string name="report_complaint">Informar de un entorno peligroso</string>
+
+</resources>
