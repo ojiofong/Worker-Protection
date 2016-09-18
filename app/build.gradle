@@ -31,4 +31,6 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
     testCompile 'junit:junit:4.12'
+    compile 'com.sefford:circular-progress-drawable:1.31@aar'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 }

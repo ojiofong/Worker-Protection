@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ojiofong.toxins">
 
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
     <application
         android:allowBackup="true"
         android:name=".App"
@@ -23,7 +26,16 @@
         </activity>
 
         <activity
-            android:name=".ui.InputDetectionActivity"
+            android:name=".ui.DetectionActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".ui.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.JackActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".service.BackgroundService" />

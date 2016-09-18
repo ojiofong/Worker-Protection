@@ -7,7 +7,8 @@ import android.content.IntentFilter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.ojiofong.toxins.ui.InputDetectionActivity;
+import com.ojiofong.toxins.Const;
+import com.ojiofong.toxins.ui.DetectionActivity;
 
 /**
  * Created by ojiofong on 9/16/16.
@@ -26,11 +27,11 @@ public class BackgroundService extends NonStopIntentService {
                 switch (state) {
                     case 0:
                         Log.d(TAG, "Headset is unplugged");
-                        showToast("Unplugged");
+                       // showToast("Unplugged");
                         break;
                     case 1:
                         Log.d(TAG, "Headset is plugged");
-                        showToast("Plugged");
+                       // showToast("Plugged");
                         startInputDetection();
                         break;
                     default:
@@ -41,9 +42,10 @@ public class BackgroundService extends NonStopIntentService {
     };
 
     private void startInputDetection() {
-        Intent intent = new Intent(this, InputDetectionActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+//        Intent intent = new Intent(this, DetectionActivity.class);
+//        intent.putExtra(Const.HEADSET_PLUGGED, Const.HEADSET_PLUGGED);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
     }
 
     public BackgroundService() {

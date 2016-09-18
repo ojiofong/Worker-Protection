@@ -64,6 +64,8 @@ public class ScrollingActivity extends AppCompatActivity {
                     Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     startInputDetection();
+
+                  //  startActivity(new Intent(ScrollingActivity.this, JackActivity.class));
                 }
             });
         }
@@ -91,7 +93,7 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void startInputDetection() {
-        Intent intent = new Intent(this, InputDetectionActivity.class);
+        Intent intent = new Intent(this, DetectionActivity.class);
         startActivity(intent);
     }
 
@@ -117,8 +119,10 @@ public class ScrollingActivity extends AppCompatActivity {
 
         switch (pos) {
             case 0:
+                startActivity(new Intent(this, ReportActivity.class));
                 break;
             case 1:
+                startActivity(new Intent(this, DetectionActivity.class));
                 break;
             case 2:
                 openImageIntent();
@@ -130,9 +134,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private List<Data> getItems() {
         List<Data> list = new ArrayList<>();
-        list.add(new Data(getString(R.string.report_complaint), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.device_connect), R.mipmap.ic_launcher, "subtitle"));
-        list.add(new Data(getString(R.string.capture_images), R.mipmap.ic_launcher, "subtitle"));
+        list.add(new Data(getString(R.string.report_complaint), R.drawable.megaphone, "subtitle"));
+        list.add(new Data(getString(R.string.device_connect), R.drawable.transmit, "subtitle"));
+        list.add(new Data(getString(R.string.capture_images), R.drawable.photo_camera, "subtitle"));
         return list;
     }
 
@@ -207,4 +211,5 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         }
     }
+
 }

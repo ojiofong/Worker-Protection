@@ -7,7 +7,7 @@
     <string name="help">Help</string>
     <string name="hello">Hello!</string>
     <string name="report_complaint">Report a complaint</string>
-    <string name="device_connect">Connect the survey device</string>
+    <string name="device_connect">Connect sensor</string>
     <string name="capture_images">Take pictures of a dangerous work condition</string>
 
 </resources>
