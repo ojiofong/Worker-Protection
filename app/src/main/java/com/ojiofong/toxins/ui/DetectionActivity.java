@@ -60,7 +60,9 @@ public class DetectionActivity extends AppCompatActivity {
             } else {
                 if (msg.getData() != null) {
                     String s = msg.getData().getString("Text");
-                    statusText.setText("Transmitting \n" + s);
+                    if(s != null){
+                        statusText.setText("Transmitting \n" + s);
+                    }
                     transmitting = true;
                 }
             }
