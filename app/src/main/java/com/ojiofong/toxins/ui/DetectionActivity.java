@@ -15,6 +15,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
@@ -48,6 +49,7 @@ public class DetectionActivity extends AppCompatActivity {
     CircularProgressDrawable drawable;
     ImageView ivDrawable;
     TextView statusText;
+    Animator currentAnimation;
 
     private SoundReceiver mSoundReceiver;
     boolean transmitting = false;
@@ -60,8 +62,9 @@ public class DetectionActivity extends AppCompatActivity {
             } else {
                 if (msg.getData() != null) {
                     String s = msg.getData().getString("Text");
-                    if(s != null){
+                    if (!TextUtils.isEmpty(s)) {
                         statusText.setText("Transmitting \n" + s);
+                        statusText.append("\n" + maskCharToNumber(s));
                     }
                     transmitting = true;
                 }
@@ -69,7 +72,6 @@ public class DetectionActivity extends AppCompatActivity {
         }
     };
 
-    Animator currentAnimation;
 
 //    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 //        @Override
@@ -90,10 +92,25 @@ public class DetectionActivity extends AppCompatActivity {
 //        }
 //    };
 
+
+    private String maskCharToNumber(String str) {
+        StringBuilder builder = new StringBuilder();
+        char[] arr = str.toCharArray();
+        for (char c : arr) {
+            if (c < '0' || c > '9') {
+                builder.append((int) c);
+            } else {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_inputdetection);
         hookUpListeners();
@@ -123,7 +140,7 @@ public class DetectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (android.R.id.home == item.getItemId()){
+        if (android.R.id.home == item.getItemId()) {
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -194,7 +211,8 @@ public class DetectionActivity extends AppCompatActivity {
                 drawable.setIndeterminate(false);
                 drawable.setProgress(0);
                 //updateDone();
-                startMockSpin();
+                if (transmitting)
+                    startMockSpin();
             }
         });
 
@@ -301,8 +319,6 @@ public class DetectionActivity extends AppCompatActivity {
 
     String postWeb() throws IOException {
 
-        //  String url = "http://ojiofong.com/test/welcome.php";
-
         String url = "http://requestb.in/1a4120f1";
 
         OkHttpClient client = new OkHttpClient();
@@ -358,7 +374,6 @@ public class DetectionActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 //    }
-
 
 
 }

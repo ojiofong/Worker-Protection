@@ -15,6 +15,8 @@ import android.util.Log;
  * The SoundReceiver can be started and stopped and re-started, .. from outside
  *
  * @author <a href="mailto:wolf@wolfpaulus.com">Wolf Paulus</a>
+ *
+ * https://github.com/wolfpaulus/jack
  */
 public class SoundReceiver {
     static final String LOG_TAG = SoundReceiver.class.getSimpleName();
