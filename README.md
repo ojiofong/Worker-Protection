@@ -9,9 +9,8 @@ The Android client intercepts data transmitted via the audio jack. Transmission 
 
 Contributors
 ==============
-Ayotunde Odejayi
+Ayotunde Odejayi  
+Dan Shim  
+Oji Ofong  
 
-Dan Shim
-
-Oji Ofong
 
